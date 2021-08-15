@@ -1,13 +1,20 @@
-import react from 'react'
+import React from 'react'
+import PlayerCards from './PlayerCards'
 
-function Players() {
+function Players({players, addPlayer}) {
+
+  const playerArr = players.map((player) => {
+    return <PlayerCards
+    key={player.id}
+    {...player}
+    addPlayer={addPlayer}
+    />
+})
 
 
   return (
     <div>
-        <ul>
-            <PlayerCards/>
-        </ul>
+        {playerArr}
     </div>
   )
 

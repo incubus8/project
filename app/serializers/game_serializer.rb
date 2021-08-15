@@ -1,3 +1,3 @@
 class GameSerializer < ActiveModel::Serializer
-  attributes :id, :team_id, :opponent_id, :date
+  attributes :id, :home_id, :away_id, :date, :result, :home_score, :away_score
 end

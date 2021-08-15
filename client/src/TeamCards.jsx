@@ -1,18 +1,39 @@
-import react from 'react'
-import PlayerCards from './PlayerCards';
+import React, {useState, useEffect} from 'react'
+import './TeamCards.css'
+import TeamRoster from './TeamRoster'
 
-function TeamCards() {
+function TeamCards({name, image, id, addTeam, players}) {
 
+    const [toggle, setToggle] = useState(false)
+
+    const handleClick = () => {
+        setToggle(toggle => !toggle)
+    }
+
+
+    // useEffect((e) => {
+    //     fetch(`http://localhost:3000/rosters/${id}`)
+    //     .then(resp => resp.json())
+    //     .then(data => console.log("hi", data))
+    // }, [])
 
   return (
-     <div className="team-card" style={{ width: "40rem", boxShadow: '3px 5px 1px 1px #00000034'}}>
-        <img src={}/>
-        <div class='team-card-body'>
-            <h4>Name</h4>
-            <Players/>
-            <button>Remove</button>
+        <div className="team-card">
+            <img src={image}/>
+            <div class='team-card-body'>
+                <h4>{name}</h4>
+                {/* <Players/> */}
+                <button onClick={handleClick} className="team-button">Roster</button>
+                
+                {toggle ? (
+                  <TeamRoster   team_id={id}
+                                players={players}/>
+                  ) : (
+                  null
+                )}
+            </div>
+            {/* <button onClick={createTeam}>Create Team</button> */}
         </div>
-    </div>
   )
 
   }

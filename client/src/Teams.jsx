@@ -1,11 +1,21 @@
 import react from 'react'
+import TeamCards from './TeamCards'
 
-function Teams() {
+function Teams({teams, addTeam, players}) {
 
+
+    const teamArr = teams.map((team) => {
+        return <TeamCards
+        key={team.id}
+        {...team}
+        players={players}
+        addTeam={addTeam}
+        />
+    })
 
   return (
     <div>
-      <TeamCards/>
+      {teamArr}
     </div>
   )
 

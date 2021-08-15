@@ -1,0 +1,13 @@
+.team-card img{
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.team-card{
+    margin: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 3px #00000034;
+    justify-content: center;
+    display: inline-block;
+}

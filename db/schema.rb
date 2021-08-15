@@ -12,37 +12,41 @@
 
 ActiveRecord::Schema.define(version: 2021_08_12_160919) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "games", force: :cascade do |t|
-    t.string "team_id"
-    t.string "opponent_id"
-    t.date "date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    # These are extensions that must be enabled in order to support this database
+    enable_extension "plpgsql"
+  
+    create_table "games", force: :cascade do |t|
+      t.string "home_id"
+      t.string "away_id"
+      t.date "date"
+      t.integer "home_score"
+      t.integer "away_score"
+      t.string "result"
+      t.datetime "created_at", precision: 6, null: false
+      t.datetime "updated_at", precision: 6, null: false
+    end
+  
+    create_table "players", force: :cascade do |t|
+      t.string "name"
+      t.string "email"
+      t.string "password_digest"
+      t.datetime "created_at", precision: 6, null: false
+      t.datetime "updated_at", precision: 6, null: false
+    end
+  
+    create_table "rosters", force: :cascade do |t|
+      t.integer "player_id"
+      t.integer "team_id"
+      t.datetime "created_at", precision: 6, null: false
+      t.datetime "updated_at", precision: 6, null: false
+    end
+  
+    create_table "teams", force: :cascade do |t|
+      t.string "name"
+      t.string "image"
+      t.datetime "created_at", precision: 6, null: false
+      t.datetime "updated_at", precision: 6, null: false
+    end
+  
   end
-
-  create_table "players", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "rosters", force: :cascade do |t|
-    t.string "player_id"
-    t.string "team_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "teams", force: :cascade do |t|
-    t.string "name"
-    t.string "image"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-end
+  

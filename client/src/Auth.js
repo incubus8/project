@@ -1,4 +1,5 @@
-import react, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 import {Form, Input} from "./styled"
 
 function Auth(){
@@ -6,9 +7,9 @@ function Auth(){
         <>
             <h1>Sign up</h1>
             <Form>
-                <Input></Input>
-                <Input></Input>
-                <Input></Input>
+                <Input>Name</Input>
+                <Input>Email</Input>
+                <Input>Password</Input>
             </Form>
         </>
     )
