@@ -2,20 +2,23 @@ import React, {useState, useEffect} from 'react'
 import './TeamCards.css'
 import TeamRoster from './TeamRoster'
 
-function TeamCards({name, image, id, addTeam, players}) {
+function TeamCards({name, image, id}) {
 
     const [toggle, setToggle] = useState(false)
+    const [lineUp, setLineUp] = useState([])
+
 
     const handleClick = () => {
         setToggle(toggle => !toggle)
     }
 
+    useEffect(() => {
+        fetch(`http://localhost:3000/teams/${id}`)
+        .then(resp => resp.json())
+        .then(data => setLineUp(data))
+    }, [])
 
-    // useEffect((e) => {
-    //     fetch(`http://localhost:3000/rosters/${id}`)
-    //     .then(resp => resp.json())
-    //     .then(data => console.log("hi", data))
-    // }, [])
+    
 
   return (
         <div className="team-card">
@@ -26,8 +29,7 @@ function TeamCards({name, image, id, addTeam, players}) {
                 <button onClick={handleClick} className="team-button">Roster</button>
                 
                 {toggle ? (
-                  <TeamRoster   team_id={id}
-                                players={players}/>
+                    <TeamRoster lineUp={lineUp}/>                
                   ) : (
                   null
                 )}

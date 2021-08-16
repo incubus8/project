@@ -33,6 +33,10 @@ class GamesController < ApplicationController
         end
     end
 
+    def abracadabraca
+        render json: {team: Team.all, player: Player.all, game: Game.all}
+    end
+
     private
 
     def game_params

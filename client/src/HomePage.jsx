@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Route, Switch, Router, Link} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import Auth from './Auth'
 import NavBar from './NavBar';
 import Teams from './Teams';
@@ -12,6 +12,7 @@ function HomePage() {
   const [teams, setTeams] = useState([])
   const [players, setPlayers] = useState([])
   const [games, setGames] = useState([])
+  const [wow, setWow] = useState([])
   const [searchTeam, setSearchTeam] = useState("")
   const [toggleTeams, setToggleTeams] = useState(false)
   const [togglePlayers, setTogglePlayers] = useState(false)
@@ -19,27 +20,37 @@ function HomePage() {
 
 
     useEffect((e) => {
-      fetch('http://localhost:3000/teams')    
+      fetch('http://localhost:3000/wow')    
       .then(resp => resp.json())
-      .then(data => setTeams(data))
+      .then(data => {
+          setTeams(data.team)
+          setPlayers(data.player)
+          setGames(data.game)
+      })
     }, [])
 
-    useEffect((e) => {
-      fetch('http://localhost:3000/players')    
-      .then(resp => resp.json())
-      .then(data => setPlayers(data))
-    }, [])
+    // useEffect((e) => {
+    //   fetch('http://localhost:3000/teams')    
+    //   .then(resp => resp.json())
+    //   .then(data => setTeams(data))
+    // }, [])
 
-    useEffect((e) => {
-      fetch('http://localhost:3000/games')    
-      .then(resp => resp.json())
-      .then(data => setGames(data))
-    }, [])
+    // useEffect((e) => {
+    //   fetch('http://localhost:3000/players')    
+    //   .then(resp => resp.json())
+    //   .then(data => setPlayers(data))
+    // }, [])
 
-    const addTeam = (newTeam) => {
-      let teamArray = [...teams, newTeam]
-      setTeams(teamArray)
-    }
+    // useEffect((e) => {
+    //   fetch('http://localhost:3000/games')    
+    //   .then(resp => resp.json())
+    //   .then(data => setGames(data))
+    // }, [])
+
+    // const addTeam = (newTeam) => {
+    //   let teamArray = [...teams, newTeam]
+    //   setTeams(teamArray)
+    // }
 
     const addPlayer = (newPlayer) => {
       let playerArray = [...players, newPlayer]
@@ -74,53 +85,48 @@ function HomePage() {
     const handleGames = () => {
       setToggleGames(toggleGames => !toggleGames)
     }
-
+  console.log("hi");
   return (
-          <div>
-            <NavBar handleSearchTeam={handleSearchTeam}/>
-              <button onClick={handleTeams} className="team-button"> Teams </button>
-                {toggleTeams ? (
-                  <Teams  teams={filterTeams}
-                          players={filterPlayers}
-                          addTeam={addTeam}/>
-                  ) : (
-                  null
-                )}
-              <button onClick={handlePlayers} className="team-button"> Players </button>
-                {togglePlayers ? (
-                  <Players  players={filterPlayers}
-                            addPlayer={addPlayer}/>
-                  ) : (
-                  null
-                )}
-              <button onClick={handleGames} className="team-button"> Games </button>
-                {toggleGames ? (
-                  <Games  games={games}
-                          addGame={addGame}/>
-                  ) : (
-                  null
-                )}
+          // <div>
+          //   <NavBar handleSearchTeam={handleSearchTeam}/>
+          //     <button onClick={handleTeams} className="team-button"> Teams </button>
+          //       {toggleTeams ? (
+          //         <Teams  teams={filterTeams}/>
+          //         ) : (
+          //         null
+          //       )}
+          //     <button onClick={handlePlayers} className="team-button"> Players </button>
+          //       {togglePlayers ? (
+          //         <Players  players={filterPlayers}
+          //                   addPlayer={addPlayer}/>
+          //         ) : (
+          //         null
+          //       )}
+          //     <button onClick={handleGames} className="team-button"> Games </button>
+          //       {toggleGames ? (
+          //         <Games  games={games}
+          //                 addGame={addGame}/>
+          //         ) : (
+          //         null
+          //       )}
 
-                {/* <Auth/>
-               <User/>
-               <Admin/>
-               <Footer/> */}
-          </div>
+          //       {/* <Auth/>
+          //      <User/>
+          //      <Admin/>
+          //      <Footer/> */}
+          // </div>
 
 
-      // <>
-      //   <NavBar/>
-      //   <main>
-      //     <Switch>
-      //       <Route path='/teams'>
-      //         <Teams/>
-      //       </Route>
-      //       <Route exact path='/'>
-      //         <NavBar/>
-      //       </Route>
-      //     </Switch>
-      //   </main>
-      // </>
+    <div>
+        {/* <NavBar handleSearchTeam={handleSearchTeam}/> */}
+            <Route path='/' render={() => <Teams teams={filterTeams}/>} />
+            {/* <Route path='/teams'>
+              <Teams teams={filterTeams}/>
+            </Route> */}
+            {/* <Route path='/login'>
+              <Login/>
+            </Route> */}
+      </div>
   )
 }
 

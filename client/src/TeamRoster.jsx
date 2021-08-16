@@ -1,31 +1,21 @@
 import React, {useState, useEffect} from 'react'
 import './TeamCards.css'
+import TeamRosterCards from './TeamRosterCards'
 
-function TeamRoster({team_id, id, players}) {
+function TeamRoster({lineUp}) {
+    
+    const lineUpArr = lineUp.players.map((roster) => {
+        return <TeamRosterCards
+        key={roster.id}
+        {...roster}
+        />
+    })
 
-    const [lineup, setLineup] = useState([])
-
-    // const createTeam = () => {
-    //     addTeam()
-    // }
-   
-
-    useEffect((e) => {
-        fetch(`http://localhost:3000/rosters/${id}`)
-        .then(resp => resp.json())
-        .then(data => console.log("hi", data))
-    }, [])
 
   return (
-        <div className="team-card">
-            <div class='team-card-body'>
-                {/* <h4>{name}</h4>
-                <h4>{email}</h4> */}
-                {/* <Players/> */}
-                <button>Remove</button>
-            </div>
-            {/* <button onClick={createTeam}>Create Team</button> */}
-        </div>
+    <div>
+        {lineUpArr}
+    </div>
   )
 
   }

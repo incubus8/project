@@ -8,4 +8,7 @@ class Game < ApplicationRecord
     has_many :away_users, foreign_key: 'away_id', class_name: 'Team'
     has_many :home_users, through: :away_users
 
+    def format
+    
+    end
 end

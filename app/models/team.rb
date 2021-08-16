@@ -2,12 +2,20 @@ class Team < ApplicationRecord
     has_many :rosters
     has_many :players, through: :rosters
 
-    has_many :team_1, foreign_key: :team_id, class_name: 'Game'
 
-    has_many :opponents, through: :team_1
-
-    has_many :team_2, foreign_key: :opponent_id, class_name: 'Game'
-    
-    has_many :teams, through: :team_2
+    def format_json
+        {
+            id: self.id,
+            name: self.name,
+            image: self.image,
+            players: self.players.map do |player|
+                {
+                    id: player.id,
+                    name: player.name,
+                    email: player.email
+                }
+            end
+        }   
+    end
 
 end

@@ -7,7 +7,7 @@ class TeamsController < ApplicationController
 
     def show
         team = Team.find_by(id: params[:id])
-        render json: team
+        render json: team.format_json
     end
 
     def create

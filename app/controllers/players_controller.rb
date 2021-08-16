@@ -9,7 +9,7 @@ class PlayersController < ApplicationController
         player = Player.find_by(id: params[:id])
 
         if player
-            render json: player.teams
+            render json: player.format_json
         else
             render json: {error: "No such player"}, status: :not_found
         end
