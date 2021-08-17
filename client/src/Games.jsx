@@ -11,10 +11,17 @@ function Games() {
       .then(data => setGames(data))
     }, [])
 
+  // const handleDelete = (id) => {
+  //   fetch(`http://localhost:3000/games/${id}`, {
+  //     method: "DELETE",
+  //   })
+  // }
+
   const gameArr = games.map((game) => {
     return <GameCards
     key={game.id}
     {...game}
+    // handleDelete={handleDelete}
     />
 })
 

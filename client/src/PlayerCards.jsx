@@ -1,7 +1,10 @@
 import react from 'react'
 
-function PlayerCards({name, email, addPlayer}) {
+function PlayerCards({name, email, id, handleDelete}) {
 
+  const handleDeleteClick = () => {
+    handleDelete(id)
+  }
 
   return (
     <div className="team-card">
@@ -9,7 +12,7 @@ function PlayerCards({name, email, addPlayer}) {
                 <h4>{name}</h4>
                 <h4>{email}</h4>
                 {/* <Players/> */}
-                <button>Remove</button>
+                <button onClick={handleDeleteClick}>Remove</button>
             </div>
         {/* <button onClick={createTeam}>Create Team</button> */}
     </div>

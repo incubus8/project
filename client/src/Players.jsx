@@ -12,10 +12,17 @@ function Players() {
       .then(data => setPlayers(data))
     }, [])
 
+    const handleDelete = (id) => {
+      fetch(`http://localhost:3000/players/${id}`, {
+        method: "DELETE",
+      })
+    }
+
   const playerArr = players.map((player) => {
     return <PlayerCards
     key={player.id}
     {...player}
+    handleDelete={handleDelete}
     />
 })
 

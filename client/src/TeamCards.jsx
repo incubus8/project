@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import './TeamCards.css'
 import TeamRoster from './TeamRoster'
 
-function TeamCards({name, image, id}) {
+function TeamCards({name, image, id, handleSubmit}) {
 
     const [toggle, setToggle] = useState(false)
     const [lineUp, setLineUp] = useState([])

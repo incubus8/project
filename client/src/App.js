@@ -18,9 +18,11 @@ function App() {
     .then(data => setUser(data))
   }, [])
 
+
+
   return (
     <div className="App">
-      <NavBar user={user} setUser={setUser} />
+      <NavBar user={user} setUser={setUser}/>
       <Switch>
           <Route exact path='/' render={() => <HomePage/>} />
           <Route path='/teams' render={() => <Teams />} />      
