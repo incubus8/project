@@ -15,6 +15,12 @@ function NavBar({handleSearchTeam}) {
             <NavLink to='/teams'>
                 Teams  
             </NavLink>
+            <NavLink to='/players'>
+                Players  
+            </NavLink>
+            <NavLink to='/games'>
+                Games  
+            </NavLink>
     </div>
   )
 

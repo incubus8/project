@@ -1,7 +1,16 @@
-import react from 'react'
+import {useEffect, useState} from 'react'
 import TeamCards from './TeamCards'
 
-function Teams({teams}) {
+function Teams() {
+
+  const [teams, setTeams] = useState([])
+
+
+  useEffect((e) => {
+      fetch('http://localhost:3000/teams')    
+      .then(resp => resp.json())
+      .then(data => setTeams(data))
+    }, [])
 
 
     const teamArr = teams.map((team) => {

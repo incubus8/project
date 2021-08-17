@@ -19,15 +19,15 @@ function HomePage() {
   const [toggleGames, setToggleGames] = useState(false)
 
 
-    useEffect((e) => {
-      fetch('http://localhost:3000/wow')    
-      .then(resp => resp.json())
-      .then(data => {
-          setTeams(data.team)
-          setPlayers(data.player)
-          setGames(data.game)
-      })
-    }, [])
+    // useEffect((e) => {
+    //   fetch('http://localhost:3000/wow')    
+    //   .then(resp => resp.json())
+    //   .then(data => {
+    //       setTeams(data.team)
+    //       setPlayers(data.player)
+    //       setGames(data.game)
+    //   })
+    // }, [])
 
     // useEffect((e) => {
     //   fetch('http://localhost:3000/teams')    
@@ -119,13 +119,17 @@ function HomePage() {
 
     <div>
         {/* <NavBar handleSearchTeam={handleSearchTeam}/> */}
-            <Route path='/' render={() => <Teams teams={filterTeams}/>} />
+            {/* <Route path='/' render={() => <HomePage/>} /> */}
+          <Switch>
+            {/* <Route exact path='/' render={() => <HomePage/>} /> */}
+            {/* <Route path='/teams' render={() => <Teams teams={filterTeams}/>} /> */}
             {/* <Route path='/teams'>
               <Teams teams={filterTeams}/>
             </Route> */}
             {/* <Route path='/login'>
               <Login/>
             </Route> */}
+          </Switch>
       </div>
   )
 }
