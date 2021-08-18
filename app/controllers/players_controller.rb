@@ -16,11 +16,11 @@ class PlayersController < ApplicationController
     end
 
     def create
-        player = Player.create!(player_params)
+        player = Player.create(player_params)
         if Player.valid?
-            render json: player, status: :created
+            render json: {id:player.id, name: player.name}, status: :created
         else
-            render json: {error: "Not able to create player"}, status: :unprocessable_entity
+            render json: {error: player.errors.full_messages}
         end
     end
 
@@ -41,7 +41,7 @@ class PlayersController < ApplicationController
     private
 
     def player_params
-        params.permit(:email, :name)
+        params.require(:player).permit(:email, :name, :password)
     end
     
     

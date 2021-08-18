@@ -18,7 +18,7 @@ function Auth({setCurrentUser}) {
             password,
             email
         }
-        const res = await fetch('http://localhost:3000/log_in', {
+        const res = await fetch('http://localhost:3000/players', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ function Auth({setCurrentUser}) {
             body: JSON.stringify({player})
         })
         const playerData = await res.json()
-        if(playerData.id){
+        if(res.ok){
             setCurrentUser(playerData)
             history.push('/')
         } else {
@@ -37,7 +37,7 @@ function Auth({setCurrentUser}) {
     return (
         <>
            <Form onSubmit={handleSubmit}>
-                <h1>Log in</h1>
+                <h1>Sign Up</h1>
                 <Input
                         type="text"
                         placeholder="name"
@@ -59,7 +59,7 @@ function Auth({setCurrentUser}) {
                         password="password"
                         onChange={(e) => setPassword(e.target.value)}>
                 </Input>
-                <Input submit type="submit" value="Log in" ></Input>
+                <Input submit type="submit" value="Sign Up" ></Input>
                 {errors?errors.map(error => <div>(error)</div>):null}
            </Form>
         </>

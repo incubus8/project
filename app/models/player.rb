@@ -1,11 +1,14 @@
+require 'bcrypt'
+
 class Player < ApplicationRecord
+include BCrypt
+
     has_many :rosters
     has_many :teams, through: :rosters
-
-    # has_secure_password
+    has_secure_password
 
     validates :email, uniqueness: {message: "email already in use"}
-    validates :name, :password_digest, presence: {message: "must be present"}
+    validates :name, :password, presence: {message: "must be present"}
     validates :name, uniqueness: {message: "name already in use"}
 
 
@@ -13,6 +16,12 @@ class Player < ApplicationRecord
     #     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     #     BCrypt::Password.create(string, cost: cost)
     # end
+
+    def password
+        
+    end
+
+
     def format_json
         {
             id: self.id,

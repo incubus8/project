@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :rosters
   resources :teams
   resources :players
+  resources :log_in, only [:create]
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

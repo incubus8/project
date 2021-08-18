@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Route, Switch} from 'react-router-dom'
 import Auth from './Auth'
-import NavBar from './NavBar';
+import NavBar from './Navbar';
 import Teams from './Teams';
 import Players from './Players';
 import Games from './Games';
@@ -9,14 +9,14 @@ import Games from './Games';
 
 
 function HomePage() {
-  const [teams, setTeams] = useState([])
-  const [players, setPlayers] = useState([])
-  const [games, setGames] = useState([])
-  const [wow, setWow] = useState([])
-  const [searchTeam, setSearchTeam] = useState("")
-  const [toggleTeams, setToggleTeams] = useState(false)
-  const [togglePlayers, setTogglePlayers] = useState(false)
-  const [toggleGames, setToggleGames] = useState(false)
+  // const [teams, setTeams] = useState([])
+  // const [players, setPlayers] = useState([])
+  // const [games, setGames] = useState([])
+  // const [wow, setWow] = useState([])
+  // const [searchTeam, setSearchTeam] = useState("")
+  // const [toggleTeams, setToggleTeams] = useState(false)
+  // const [togglePlayers, setTogglePlayers] = useState(false)
+  // const [toggleGames, setToggleGames] = useState(false)
 
 
     // useEffect((e) => {
@@ -52,39 +52,39 @@ function HomePage() {
     //   setTeams(teamArray)
     // }
 
-    const addPlayer = (newPlayer) => {
-      let playerArray = [...players, newPlayer]
-      setPlayers(playerArray)
-    }
+    // const addPlayer = (newPlayer) => {
+    //   let playerArray = [...players, newPlayer]
+    //   setPlayers(playerArray)
+    // }
 
-    const addGame = (newGame) => {
-      let gameArray = [...games, newGame]
-      setGames(gameArray)
-    }
+    // const addGame = (newGame) => {
+    //   let gameArray = [...games, newGame]
+    //   setGames(gameArray)
+    // }
 
-    const handleSearchTeam = (e) => {
-      setSearchTeam(e.target.value)
-    }
+    // const handleSearchTeam = (e) => {
+    //   setSearchTeam(e.target.value)
+    // }
 
-    const filterTeams = teams.filter(team => {
-      return (team.name.toLowerCase().includes(searchTeam.toLowerCase()))
-    })
+    // const filterTeams = teams.filter(team => {
+    //   return (team.name.toLowerCase().includes(searchTeam.toLowerCase()))
+    // })
 
-    const filterPlayers = players.filter(player => {
-      return (player.name.toLowerCase().includes(searchTeam.toLowerCase()))
-    })
+    // const filterPlayers = players.filter(player => {
+    //   return (player.name.toLowerCase().includes(searchTeam.toLowerCase()))
+    // })
 
-    const handleTeams = () => {
-      setToggleTeams(toggleTeams => !toggleTeams)
-    }
+    // const handleTeams = () => {
+    //   setToggleTeams(toggleTeams => !toggleTeams)
+    // }
 
-    const handlePlayers = () => {
-      setTogglePlayers(togglePlayers => !togglePlayers)
-    }
+    // const handlePlayers = () => {
+    //   setTogglePlayers(togglePlayers => !togglePlayers)
+    // }
 
-    const handleGames = () => {
-      setToggleGames(toggleGames => !toggleGames)
-    }
+    // const handleGames = () => {
+    //   setToggleGames(toggleGames => !toggleGames)
+    // }
   console.log("hi");
   return (
           // <div>
@@ -120,7 +120,7 @@ function HomePage() {
     <div>
         {/* <NavBar handleSearchTeam={handleSearchTeam}/> */}
             {/* <Route path='/' render={() => <HomePage/>} /> */}
-          <Switch>
+          {/* <Switch> */}
             {/* <Route exact path='/' render={() => <HomePage/>} /> */}
             {/* <Route path='/teams' render={() => <Teams teams={filterTeams}/>} /> */}
             {/* <Route path='/teams'>
@@ -129,7 +129,7 @@ function HomePage() {
             {/* <Route path='/login'>
               <Login/>
             </Route> */}
-          </Switch>
+          {/* </Switch> */}
       </div>
   )
 }

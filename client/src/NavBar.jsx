@@ -1,14 +1,16 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
-import "./NavBar.css"
+import {NavBar} from "./styled"
 
-function NavBar({handleSearchTeam}) {
+function Navbar({handleSearchTeam, currentUser}) {
 
 
   return (
-    <div>
-      <input className="main-search" onChange={handleSearchTeam} className="prompt" placeholder="Search Teams"/>
-            <i className="search-icon" />
+    <NavBar>
+      {/* <input className="main-search" onChange={handleSearchTeam} className="prompt" placeholder="Search Teams"/>
+            <i className="search-icon" /> */}
+            {/* <h1>{currentUser.name}</h1> */}
+            <h1>Hi</h1>
             <NavLink to='/'>
                 Home
             </NavLink>
@@ -21,8 +23,14 @@ function NavBar({handleSearchTeam}) {
             <NavLink to='/games'>
                 Games  
             </NavLink>
-    </div>
+            <NavLink to='/signup'>
+                Sign Up  
+            </NavLink>
+            <NavLink to='/log_in'>
+                Log in  
+            </NavLink>
+    </NavBar>
   )
 
   }
-export default NavBar;
+export default Navbar;
