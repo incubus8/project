@@ -1,7 +1,6 @@
 require 'bcrypt'
 
 class Player < ApplicationRecord
-include BCrypt
 
     has_many :rosters
     has_many :teams, through: :rosters
@@ -17,9 +16,6 @@ include BCrypt
     #     BCrypt::Password.create(string, cost: cost)
     # end
 
-    def password
-        
-    end
 
 
     def format_json
@@ -27,7 +23,6 @@ include BCrypt
             id: self.id,
             name: self.name,
             email: self.email,
-            password_digest: self.password_digest,
             teams: self.teams.map do |team|
                 {
                     id: team.id,

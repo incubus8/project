@@ -1,45 +1,62 @@
 import {useHistory} from 'react-router-dom'
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {Input, Form} from './styled'
 
 
-function Auth({setCurrentUser}) {
+function Login({setCurrentUser}) {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errors, setErrors] = useState(null)
+    const [errors, setErrors] = useState([])
 
     const history = useHistory()
 
-    async function handleSubmit(e){
+    function handleSubmit(e){
         e.preventDefault()
         const player = {
             name,
             password,
             email
         }
-        const res = await fetch('http://localhost:3000/log_in', {
+        
+        const token =localStorage.getItem('token')
+        fetch('http://localhost:3000/signin', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({player})
         })
-        const playerData = await res.json()
-        if(playerData.id){
-            setCurrentUser(playerData)
-            history.push('/')
+        .then((res) => res.json())
+        .then((data) => {
+        if(data.errors) {
+            setErrors(data.errors)
         } else {
-            setErrors(playerData.message)
+            const {player, token} = data
+            localStorage.setItem("token", token)
+            setCurrentUser(player)
+            history.push('/') 
         }
-    }
+    })
+}
+
+        // (playerData.id){
+        //     const {playerInfo, token} = playerData
+        //     localStorage.setItem("token", token)
+        //     setCurrentUser(playerInfo)
+        //     history.push('/')
+        // } else {
+        //     setErrors(playerData.message)
+        // }
 
     return (
         <>
            <Form onSubmit={handleSubmit}>
-                <h1>Log in</h1>
+                <h1>Sign In</h1>
                 <Input
                         type="text"
+                        required
                         placeholder="name"
                         value={name}
                         name="name"
@@ -47,23 +64,25 @@ function Auth({setCurrentUser}) {
                 </Input>
                 <Input
                         type="text"
+                        required
                         placeholder="email"
                         value={email}
                         email="email"
                         onChange={(e) => setEmail(e.target.value)}>
                 </Input>
                 <Input
-                        type="text"
+                        type="password"
+                        required
                         placeholder="Password"
                         value={password}
                         password="password"
                         onChange={(e) => setPassword(e.target.value)}>
                 </Input>
+                {errors ? errors.map(error => <div>{error}</div>) : null}
                 <Input submit type="submit" value="Log in" ></Input>
-                {errors?errors.map(error => <div>(error)</div>):null}
            </Form>
         </>
     )
 }
 
-export default Auth
+export default Login

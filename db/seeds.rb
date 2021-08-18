@@ -16,7 +16,7 @@ puts "Seeding Players"
     Player.create(
         name: Faker::FunnyName.name,
         email: Faker::Internet.email,
-        password_digest: 1234
+        password: "1234"
     )
 end
 

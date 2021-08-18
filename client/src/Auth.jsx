@@ -1,5 +1,5 @@
 import {useHistory} from 'react-router-dom'
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {Input, Form} from './styled'
 
 
@@ -11,27 +11,33 @@ function Auth({setCurrentUser}) {
 
     const history = useHistory()
 
-    async function handleSubmit(e){
+    function handleSubmit(e){
         e.preventDefault()
         const player = {
             name,
             password,
             email
         }
-        const res = await fetch('http://localhost:3000/players', {
+        const token =localStorage.getItem('token')
+        fetch('http://localhost:3000/signup', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({player})
         })
-        const playerData = await res.json()
-        if(res.ok){
-            setCurrentUser(playerData)
-            history.push('/')
+        .then((res) => res.json())
+        .then((data) => {
+        if(data.errors) {
+            setErrors(data.errors)
         } else {
-            setErrors(playerData.message)
+            const {player, token} = data
+            localStorage.setItem("token", token)
+            setCurrentUser(player)
+            history.push('/') 
         }
+    })
     }
 
     return (

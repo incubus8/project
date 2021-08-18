@@ -1,35 +1,80 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
-import {NavBar} from "./styled"
+import {useHistory, NavLink} from 'react-router-dom'
+// import {NavBar} from "./styled"
 
-function Navbar({handleSearchTeam, currentUser}) {
+function Navbar({currentUser, setCurrentUser}) {
 
+  const history = useHistory()
 
+  function logOut(){
+    localStorage.removeItem("token")
+    localStorage.removeItem("player")
+    setCurrentUser(null)
+    history.push('/')
+  }
+
+console.log(currentUser);
   return (
-    <NavBar>
+    <div>
       {/* <input className="main-search" onChange={handleSearchTeam} className="prompt" placeholder="Search Teams"/>
             <i className="search-icon" /> */}
-            {/* <h1>{currentUser.name}</h1> */}
-            <h1>Hi</h1>
-            <NavLink to='/'>
-                Home
-            </NavLink>
-            <NavLink to='/teams'>
-                Teams  
-            </NavLink>
-            <NavLink to='/players'>
-                Players  
-            </NavLink>
-            <NavLink to='/games'>
-                Games  
-            </NavLink>
-            <NavLink to='/signup'>
-                Sign Up  
-            </NavLink>
-            <NavLink to='/log_in'>
-                Log in  
-            </NavLink>
-    </NavBar>
+            {currentUser ? 
+            <h1>{currentUser.name}</h1>
+            : null}
+
+            {/* <h1>Hi</h1> */}
+          
+              {currentUser ? (
+                <>
+                  <NavLink to='/'>
+                        Home
+                    </NavLink>
+
+                    <NavLink to='/teams'>
+                        Teams  
+                    </NavLink>
+
+                    <NavLink to='/players'>
+                        Players  
+                    </NavLink>
+
+                    <NavLink to='/games'>
+                        Games  
+                    </NavLink>
+
+                    <NavLink to='/'>
+                        <button onClick={logOut}>Sign Out</button>
+                    </NavLink>
+                </>
+              ):(
+                <>
+                    <NavLink to='/'>
+                        Home
+                    </NavLink>
+
+                    <NavLink to='/teams'>
+                        Teams  
+                    </NavLink>
+
+                    <NavLink to='/players'>
+                        Players  
+                    </NavLink>
+
+                    <NavLink to='/games'>
+                        Games  
+                    </NavLink>
+
+                    <NavLink to='/signup'>
+                        Sign Up  
+                    </NavLink>
+
+                    <NavLink to='/signin'>
+                        Sign in  
+                    </NavLink>
+                </>
+            )}
+
+    </div>
   )
 
   }

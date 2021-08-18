@@ -9,33 +9,34 @@ import Auth from './Auth'
 import Login from './Login'
 import './App.css';
 
-// require('react-dom');
-// window.React2 = require('react');
-// console.log("test", window.React1 === window.React2);
-
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null)
 
   useEffect(() => {
-    fetch('http://localhost:4000/')
+    const token = localStorage.getItem('token')
+    fetch('http://localhost:3000/me', {
+      headers: { 
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(res => res.json())
     .then(data => setCurrentUser(data))
   }, [])
 
 
-
+console.log('user', currentUser);
   return (
     <div className="App">
-      <Navbar currentUser={currentUser}/>
+      <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       <Switch>
           <Route exact path='/' render={() => <HomePage/>} />
-          <Route exact path='/signup' render={() => <Auth setCurrentUser={setCurrentUser}/>} />      
+          <Route path='/signup' render={() => <Auth setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />      
           <Route path='/teams' render={() => <Teams />} />      
           <Route path='/players' render={() => <Players />} />      
           <Route path='/games' render={() => <Games />} />      
-          <Route path='/login' render={() => <Login setCurrentUser={setCurrentUser}/>} />      
+          <Route path='/signin' render={() => <Login setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />      
       </Switch>
     </div>
   );
