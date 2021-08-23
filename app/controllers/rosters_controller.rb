@@ -17,7 +17,7 @@ class RostersController < ApplicationController
     def show
         rosters = Roster.find_by(id: params[:id])
         if rosters
-            render json: rosters
+            render json: rosters.format_json
         else
             render json: {error: 'Not Found'}, status: :not_found
         end

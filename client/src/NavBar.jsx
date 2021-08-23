@@ -16,9 +16,7 @@ function Navbar({currentUser, setCurrentUser}) {
 console.log(currentUser);
   return (
     <div>
-      {/* <input className="main-search" onChange={handleSearchTeam} className="prompt" placeholder="Search Teams"/>
-            <i className="search-icon" /> */}
-            {currentUser ? 
+         {currentUser ? 
             <h1>{currentUser.name}</h1>
             : null}
 

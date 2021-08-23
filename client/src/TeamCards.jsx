@@ -22,7 +22,7 @@ function TeamCards({name, image, id, handleSubmit}) {
 
   return (
         <div className="team-card">
-            <img src={image}/>
+            <img src={image} alt="oops"/>
             <div class='team-card-body'>
                 <h4>{name}</h4>
                 {/* <Players/> */}

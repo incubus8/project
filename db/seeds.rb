@@ -12,11 +12,11 @@ Game.reset_pk_sequence
 
 puts "Seeding Players"
 
-20.times do
+60.times do
     Player.create(
         name: Faker::FunnyName.name,
         email: Faker::Internet.email,
-        password: "1234"
+        password: "1234",
     )
 end
 
@@ -44,7 +44,7 @@ puts "Seeding Teams"
 
 puts "Seeding Rosters"
 
-20.times do
+60.times do
     Roster.create(player_id: Player.ids.sample, team_id: Team.ids.sample)
 end
 

@@ -38,7 +38,7 @@ function Teams() {
         .then((res) => res.json())
         .then(teamData => addTeam(teamData))
 
-        const clearForm =[setName(""), setImage("")]
+        // const clearForm =[setName(""), setImage("")]
      }
 
 

@@ -17,6 +17,7 @@ class PlayersController < ApplicationController
         end
     end
 
+
     def update
         player = Player.find(params[:id])
         player.update(player_params)
@@ -67,6 +68,5 @@ class PlayersController < ApplicationController
     def player_params
         params.require(:player).permit(:name, :email, :password)
     end
-    
     
 end
