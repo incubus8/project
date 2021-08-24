@@ -1,6 +1,6 @@
 .team-card img{
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 350px;
+    max-height: 350px;
 }
 
 .team-card{
@@ -10,4 +10,32 @@
     box-shadow: 3px #00000034;
     justify-content: center;
     display: inline-block;
+}
+
+.game-card{
+    margin: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 3px #00000034;
+    justify-content: center;
+    display: inline-block;
+    height: 250px;
+    width: 250px;
+}
+
+.player-card{
+    margin: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 3px #00000034;
+    justify-content: center;
+    display: inline-block;
+    height: 300px;
+    width: 300px;
+}
+
+.submitGame {
+    box-shadow: 3px 1px 1px 1px #00000034;
+    border-radius: 25px;
+
 }

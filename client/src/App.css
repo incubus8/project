@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+
+* {
+  background-color: rgb(13, 109, 192);
+}
+
+.teamSubmit {
+  background-color: white;
+}

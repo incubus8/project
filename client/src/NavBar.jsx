@@ -1,6 +1,6 @@
 import React from 'react'
 import {useHistory, NavLink} from 'react-router-dom'
-// import {NavBar} from "./styled"
+import './NavBar.css'
 
 function Navbar({currentUser, setCurrentUser}) {
 
@@ -15,7 +15,7 @@ function Navbar({currentUser, setCurrentUser}) {
 
 console.log(currentUser);
   return (
-    <div>
+    <div className="navbar">
          {currentUser ? 
             <h1>{currentUser.name}</h1>
             : null}
@@ -24,49 +24,49 @@ console.log(currentUser);
           
               {currentUser ? (
                 <>
-                  <NavLink to='/'>
+                  {/* <NavLink to='/'>
                         Home
-                    </NavLink>
+                    </NavLink> */}
 
-                    <NavLink to='/teams'>
+                    <NavLink className='links' to='/teams'>
                         Teams  
                     </NavLink>
-
-                    <NavLink to='/players'>
+                    
+                    <NavLink className='links' to='/players'>
                         Players  
                     </NavLink>
 
-                    <NavLink to='/games'>
+                    <NavLink className='links' to='/games'>
                         Games  
                     </NavLink>
 
-                    <NavLink to='/'>
+                    <NavLink className='links' to='/'>
                         <button onClick={logOut}>Sign Out</button>
                     </NavLink>
                 </>
               ):(
                 <>
-                    <NavLink to='/'>
+                    {/* <NavLink to='/'>
                         Home
-                    </NavLink>
+                    </NavLink> */}
 
-                    <NavLink to='/teams'>
+                    <NavLink className='links' to='/teams'>
                         Teams  
                     </NavLink>
 
-                    <NavLink to='/players'>
+                    <NavLink className='links' to='/players'>
                         Players  
                     </NavLink>
 
-                    <NavLink to='/games'>
+                    <NavLink className='links' to='/games'>
                         Games  
                     </NavLink>
 
-                    <NavLink to='/signup'>
+                    <NavLink className='links' to='/signup'>
                         Sign Up  
                     </NavLink>
 
-                    <NavLink to='/signin'>
+                    <NavLink className='links' to='/signin'>
                         Sign in  
                     </NavLink>
                 </>

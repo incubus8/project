@@ -31,12 +31,12 @@ console.log('user', currentUser);
     <div className="App">
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       <Switch>
-          <Route exact path='/' render={() => <HomePage/>} />
+          {/* <Route exact path='/' render={() => <HomePage/>} /> */}
           <Route path='/signup' render={() => <Auth setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />      
           <Route path='/teams' render={() => <Teams />} />      
           <Route path='/players' render={() => <Players />} />      
           <Route path='/games' render={() => <Games />} />      
-          <Route path='/signin' render={() => <Login setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />      
+          <Route path='/' render={() => <Login setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />      
       </Switch>
     </div>
   );

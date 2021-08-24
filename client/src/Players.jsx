@@ -7,9 +7,14 @@ function Players() {
   const [teams, setTeams] = useState([])
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
+  const [teamName, setTeamName] = useState("")
 
+  const handleTeamName = (e) => setTeamName(e.target.value)
   const handleName = (e) => setName(e.target.value)
   const handleEmail = (e) => setEmail(e.target.value)
+
+  const teamList = teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)
+
 
   useEffect((e) => {
       fetch('http://localhost:3000/players')    
@@ -52,12 +57,15 @@ function Players() {
         .then(playerData => addPlayer(playerData))
      }
 
-    const teamList = () => teams.map(team => <option key={team.id} value={team.name}>{team.name}</option>)
 
   const playerArr = players.map((player) => {
+    console.log("player", player);
     return <PlayerCards
     key={player.id}
-    {...player}
+    player_name={player.name}
+    player_email={player.email}
+    player_id={player.id}
+    teams={player.teams}
     teamList={teamList}
     handleDelete={handleDelete}
     />

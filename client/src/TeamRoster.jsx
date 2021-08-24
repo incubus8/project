@@ -3,6 +3,7 @@ import './TeamCards.css'
 import TeamRosterCards from './TeamRosterCards'
 
 function TeamRoster({lineUp}) {
+  
     
     const lineUpArr = lineUp.players.map((roster) => {
         return <TeamRosterCards

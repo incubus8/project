@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import GameCards from './GameCards'
+import {Select, InputLabel, MenuItem, FormHelperText, FormControl, makeStyles} from '@material-ui/core'
 
 function Games() {
 
@@ -32,20 +33,26 @@ function Games() {
       .then(data => setGames(data))
     }, [])
 
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost:3000/games/${id}`, {
+      method: "DELETE",
+    })
+  //   .then((res) => res.json())
+  //   .then(() => {
+  //     const updatedGames = games.filter((game) => {
+  //       return game.id !== (id)})
+  //     setGames(updatedGames)
+  //   })
+  }
+
   useEffect((e) => {
     fetch('http://localhost:3000/teams')    
     .then(resp => resp.json())
     .then(data => setTeams(data))
   }, [])
 
-
-  // const handleDelete = (id) => {
-  //   fetch(`http://localhost:3000/games/${id}`, {
-  //     method: "DELETE",
-  //   })
-  // }
-
-  function handleSubmit(e) {
+    function handleSubmit(e) {
     e.preventDefault()
     let formData = {
       home_id: home,
@@ -67,6 +74,8 @@ function Games() {
         .then(gameData => addGame(gameData))
      }
 
+    //  console.log("home", games.home.name);
+
      const addGame = (newGame) => {
       let gameArray = [...games, newGame]
       setGames(gameArray)
@@ -76,42 +85,80 @@ function Games() {
     return <GameCards
     key={game.id}
     {...game}
+    handleDelete={handleDelete}
     />
 })
 
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
+
+  const classes = useStyles();
+  const [age, setAge] = useState('');
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="submitGame" onSubmit={handleSubmit}>
         <button>Add a Game</button>
-          <select value={home} onChange={handleHome}>
+          <select className='teamSubmit' value={home} onChange={handleHome}>
             <option>Select Team</option>
               {teamList}
           </select>
-          <select value={away} onChange={handleAway}>
+          <select className='teamSubmit' value={away} onChange={handleAway}>
             <option>Select Team</option>
               {teamList}
           </select>
-          <select value={homeScore} onChange={handleHomeScore}>
+          <select className='teamSubmit' value={homeScore} onChange={handleHomeScore}>
             <option>Select Home Score</option>
               {scoresList}
           </select>
-          <select value={awayScore} onChange={handleAwayScore}>
+          <select className='teamSubmit' value={awayScore} onChange={handleAwayScore}>
             <option>Select Away Score</option>
               {scoresList}
           </select>
-          <select value={result} onChange={handleResult}>
+          <select className='teamSubmit' value={result} onChange={handleResult}>
             <option>Winner</option>
               {resultsList}
           </select>
-        {/* <input placeholder="Home Team" value={home} onChange={handleHome}/>
-        <input placeholder="Away Team" value={away} onChange={handleAway}/>
-        <input placeholder="Home Score" value={homeScore} onChange={handleHomeScore}/>
-        <input placeholder="Away Score" value={awayScore} onChange={handleAwayScore}/>
-        <input placeholder="Result" value={result} onChange={handleResult}/> */}
-        <input placeholder="Date" value={date} onChange={handleDate}/>
+        <input className='teamSubmit' type="date" value={date} onChange={handleDate}/>
       </form>
       {gameArr}
     </div>
+
+    // <div>
+    // <FormControl variant="outlined" className={classes.formControl} onSubmit={handleSubmit}>
+    //     {/* <InputLabel>Home Team</InputLabel> */}
+    //     <select value={home} onChange={handleHome}>
+    //       <option>Home Team</option>
+    //         {teamList}
+    //     </select>
+    //     <select value={away} onChange={handleAway}>
+    //       <option>Select Team</option>
+    //         {teamList}
+    //     </select>
+    //     <select value={homeScore} onChange={handleHomeScore}>
+    //       <option>Select Home Score</option>
+    //         {scoresList}
+    //     </select>
+    //     <select value={awayScore} onChange={handleAwayScore}>
+    //       <option>Select Away Score</option>
+    //         {scoresList}
+    //     </select>
+    //     <select value={result} onChange={handleResult}>
+    //       <option>Winner</option>
+    //         {resultsList}
+    //     </select>
+    //   <input type="date" value={date} onChange={handleDate}/>
+    // <button>Add a Game</button>
+    // </FormControl>
+    // {gameArr}
+    // </div>
   )
 
   }
