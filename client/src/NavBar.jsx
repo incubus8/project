@@ -15,59 +15,57 @@ function Navbar({currentUser, setCurrentUser}) {
 
 console.log(currentUser);
   return (
-    <div className="navbar">
+    <div className="navbar" style={{ padding: "20px"}}>
+        {/* <span style={{color: "white", fontSize: "25px"}}>FLUF</span> */}
          {currentUser ? 
-            <h1>{currentUser.name}</h1>
-            : null}
-
-            {/* <h1>Hi</h1> */}
-          
+            <span className="welcome">{currentUser.name}</span>
+            : null}        
               {currentUser ? (
                 <>
-                  {/* <NavLink to='/'>
-                        Home
+                  {/* <NavLink className='links' to='/'>
+                      <a className="linkTags">Home</a>
                     </NavLink> */}
 
-                    <NavLink className='links' to='/teams'>
-                        Teams  
+                    <NavLink  className='links' to='/teams'>
+                      <a className="linkTags">Teams</a>  
                     </NavLink>
                     
                     <NavLink className='links' to='/players'>
-                        Players  
+                      <a className="linkTags">Players</a>  
                     </NavLink>
 
                     <NavLink className='links' to='/games'>
-                        Games  
+                      <a className="linkTags">Games</a>  
                     </NavLink>
 
                     <NavLink className='links' to='/'>
-                        <button onClick={logOut}>Sign Out</button>
+                      <button className="button" onClick={logOut}>Sign Out</button>
                     </NavLink>
                 </>
               ):(
                 <>
-                    {/* <NavLink to='/'>
-                        Home
+                    {/* <NavLink className='links' to='/'>
+                      <a className="linkTags">Home</a>
                     </NavLink> */}
 
                     <NavLink className='links' to='/teams'>
-                        Teams  
+                      <a className="linkTags">Teams</a>  
                     </NavLink>
 
                     <NavLink className='links' to='/players'>
-                        Players  
+                    <a className="linkTags">Players</a>   
                     </NavLink>
 
                     <NavLink className='links' to='/games'>
-                        Games  
+                      <a className="linkTags">Games</a>  
                     </NavLink>
 
                     <NavLink className='links' to='/signup'>
-                        Sign Up  
+                      <a className="linkTags">Sign Up</a>                    
                     </NavLink>
 
                     <NavLink className='links' to='/signin'>
-                        Sign in  
+                      <a className="linkTags">Sign In</a>
                     </NavLink>
                 </>
             )}

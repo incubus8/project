@@ -7,6 +7,7 @@ import Players from './Players'
 import Games from './Games'
 import Auth from './Auth'
 import Login from './Login'
+import 'semantic-ui-css/semantic.min.css'
 import './App.css';
 
 

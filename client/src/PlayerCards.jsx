@@ -1,4 +1,5 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
+import {Button} from 'semantic-ui-react'
 
 
 function PlayerCards({player_name, player_email, player_id, teams, handleDelete, teamList, id}) {
@@ -18,7 +19,7 @@ function PlayerCards({player_name, player_email, player_id, teams, handleDelete,
   const handleTeamName = (e) => setTeamss(e.target.value)
 
   const handleDeleteClick = () => {
-    handleDelete(id)
+    handleDelete(player_id)
   }
 
   // useEffect((e) => {
@@ -32,7 +33,7 @@ function PlayerCards({player_name, player_email, player_id, teams, handleDelete,
     console.log(e.target.value);
     let formData = {
       team_id: teams,
-      player_id: id
+      player_id: player_id
     }
 
     fetch(`http://localhost:3000/rosters/${id}`, {
@@ -65,22 +66,22 @@ function PlayerCards({player_name, player_email, player_id, teams, handleDelete,
                       {teamList}
                   </select>
               </form> */}
-              <button>Add To Team</button>
-              <select value={teams.id} >
-                    <option>Select Team</option>
+              <select className="teamSubmit" value={teams.id} >
+                    <option >Select Team</option>
                       {teamList}
                   </select>
+              <Button className="button">Add To Team</Button>
                 <h4>{player_name}</h4>
                 <h4>{player_email}</h4>
 
-                <button onClick={handleToggle} className="teams-button">Show Teams</button>
+                <Button className="button" onClick={handleToggle} className="teams-button">Show Teams</Button>
                 { toggle ? 
                   <h5>{teamArr}</h5>
                   :
                   null
                 }
                 {/* <Players/> */}
-                <button onClick={handleDeleteClick}>Remove</button>
+                <Button className="button" onClick={handleDeleteClick}>Remove</Button>
             </div>
         {/* <button onClick={createTeam}>Create Team</button> */}
     </div>

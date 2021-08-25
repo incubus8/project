@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import GameCards from './GameCards'
-import {Select, InputLabel, MenuItem, FormHelperText, FormControl, makeStyles} from '@material-ui/core'
+import {Button} from 'semantic-ui-react'
 
 function Games() {
 
@@ -13,19 +13,18 @@ function Games() {
   const [result, setResult] = useState("")
   const [teams, setTeams] = useState([])
 
-  const handleHome = (e) => setHome(e.target.value)
-  const handleAway = (e) => setAway(e.target.value)
-  const handleHomeScore = (e) => setHomeScore(e.target.value)
-  const handleAwayScore = (e) => setAwayScore(e.target.value)
-  const handleDate = (e) => setDate(e.target.value)
-  const handleResult = (e) => setResult(e.target.value)
-
   const teamList = teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)
   const scores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
   const scoresList = scores.map(score => <option key={score.id} value={score.id}>{score}</option>)
   const results = ["home wins", "away wins"]
   const resultsList = results.map(result => <option key={result.id} value={result.id}>{result}</option>)
   
+  const handleHome = (e) => setHome(e.target.value)
+  const handleAway = (e) => setAway(e.target.value)
+  const handleHomeScore = (e) => setHomeScore(e.target.value)
+  const handleAwayScore = (e) => setAwayScore(e.target.value)
+  const handleDate = (e) => setDate(e.target.value)
+  const handleResult = (e) => setResult(e.target.value)
   
   useEffect((e) => {
       fetch('http://localhost:3000/games')    
@@ -89,23 +88,9 @@ function Games() {
     />
 })
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
-  const classes = useStyles();
-  const [age, setAge] = useState('');
-
   return (
     <div>
       <form className="submitGame" onSubmit={handleSubmit}>
-        <button>Add a Game</button>
           <select className='teamSubmit' value={home} onChange={handleHome}>
             <option>Select Team</option>
               {teamList}
@@ -127,38 +112,10 @@ const useStyles = makeStyles((theme) => ({
               {resultsList}
           </select>
         <input className='teamSubmit' type="date" value={date} onChange={handleDate}/>
+        <Button className="button">Add a Game</Button>
       </form>
       {gameArr}
     </div>
-
-    // <div>
-    // <FormControl variant="outlined" className={classes.formControl} onSubmit={handleSubmit}>
-    //     {/* <InputLabel>Home Team</InputLabel> */}
-    //     <select value={home} onChange={handleHome}>
-    //       <option>Home Team</option>
-    //         {teamList}
-    //     </select>
-    //     <select value={away} onChange={handleAway}>
-    //       <option>Select Team</option>
-    //         {teamList}
-    //     </select>
-    //     <select value={homeScore} onChange={handleHomeScore}>
-    //       <option>Select Home Score</option>
-    //         {scoresList}
-    //     </select>
-    //     <select value={awayScore} onChange={handleAwayScore}>
-    //       <option>Select Away Score</option>
-    //         {scoresList}
-    //     </select>
-    //     <select value={result} onChange={handleResult}>
-    //       <option>Winner</option>
-    //         {resultsList}
-    //     </select>
-    //   <input type="date" value={date} onChange={handleDate}/>
-    // <button>Add a Game</button>
-    // </FormControl>
-    // {gameArr}
-    // </div>
   )
 
   }

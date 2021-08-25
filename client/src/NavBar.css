@@ -2,7 +2,7 @@
 .ui-icon-input {
     width: 15em;
     margin-left: 0.75em;
-    padding-top: 0.25em;
+    padding-top: 25em;
    
 }
 
@@ -16,4 +16,22 @@
 .links {
     margin-left: 10px;
     margin-right: 10px;
+    font-size: 20px;
+    
+}
+
+.navbar {
+    background-color: black;
+    margin-bottom: 20px;
+    height: 70px;
+} 
+
+h2 {
+    color: white;
+}
+
+.welcome {
+    color: white;
+    text-align: right;
+    font-size: 14px;
 }

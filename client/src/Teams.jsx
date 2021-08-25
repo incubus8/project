@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import TeamCards from './TeamCards'
+import {Button} from 'semantic-ui-react'
 
 function Teams() {
 
@@ -51,9 +52,9 @@ function Teams() {
   return (
     <div >
       <form onSubmit={handleSubmit}>
-        <button>Add a Team</button>
         <input className='teamSubmit' placeholder="Team Name" value={name} onChange={handleName}/>
         <input className='teamSubmit' placeholder="Image URL" value={image} onChange={handleImage}/>
+        <Button className="button">Add a Team</Button>
       </form>
       {teamArr}
     </div>

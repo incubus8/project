@@ -53,7 +53,9 @@ function Login({setCurrentUser}) {
     return (
         <>
            <Form onSubmit={handleSubmit}>
-                <h1>Sign In</h1>
+                <h1>Welcome to FLUF</h1>
+                <h3>FLatiron Ultimate Frisbee</h3>
+                <h3>Please Sign In</h3>
                 <Input
                         type="text"
                         required

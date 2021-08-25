@@ -7,11 +7,14 @@ function Players() {
   const [teams, setTeams] = useState([])
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [teamName, setTeamName] = useState("")
 
   const handleTeamName = (e) => setTeamName(e.target.value)
   const handleName = (e) => setName(e.target.value)
   const handleEmail = (e) => setEmail(e.target.value)
+  const handlePassword = (e) => setPassword(e.target.value)
+
 
   const teamList = teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)
 
@@ -37,8 +40,9 @@ function Players() {
     function handleSubmit(e) {
       e.preventDefault()
       let formData = {
-        name:name,
-        email:email
+        name,
+        email,
+        password,
       }
 
       const addPlayer = (newPlayer) => {
@@ -59,7 +63,6 @@ function Players() {
 
 
   const playerArr = players.map((player) => {
-    console.log("player", player);
     return <PlayerCards
     key={player.id}
     player_name={player.name}
@@ -74,11 +77,11 @@ function Players() {
 
   return (
     <div>
-      {/* <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <button>Add a Player</button>
         <input placeholder="Player Name" value={name} onChange={handleName}/>
         <input placeholder="Email Address" value={email} onChange={handleEmail}/>
-      </form> */}
+      </form>
         {playerArr}
     </div>
   )
