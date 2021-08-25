@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
     before_action :authenticate, only: [:me, :update]
 
     def index
-        players = Player.all
+        players = Player.all.map {|player| player.format_json}
         render json: players
     end
 

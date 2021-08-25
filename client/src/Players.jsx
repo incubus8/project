@@ -19,9 +19,13 @@ function Players({teams, setTeams}) {
   const handlePassword = (e) => setPassword(e.target.value)
   const handleSearch = (e) => setSearch(e.target.value)
 
-
   // const teamList = teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)
 
+  const removePlayer = (playerId) => {
+    const lessPlayers = players.filter(p => p.id !== playerId)
+
+    setPlayers(lessPlayers)
+  }
 
   useEffect((e) => {
       fetch('http://localhost:3000/players')    
@@ -33,13 +37,8 @@ function Players({teams, setTeams}) {
       fetch(`http://localhost:3000/players/${id}`, {
         method: "DELETE",
       })
+      .then(data => removePlayer(id),)
     }
-
-    // useEffect((e) => {
-    //   fetch('http://localhost:3000/teams')    
-    //   .then(resp => resp.json())
-    //   .then(data => setTeams(data))
-    // }, [])
 
     function handleSubmit(e) {
       e.preventDefault()
@@ -89,13 +88,12 @@ function Players({teams, setTeams}) {
     <div>
       <form onSubmit={handleSubmit}>
         <input className="teamSubmit" id="search" onChange={handleSearch} type="text" placeholder="Search Players"></input>
-        <input className='teamSubmit' placeholder="Player Name" value={name} onChange={handleName}/>
-        <input className='teamSubmit' placeholder="Email Address" value={email} onChange={handleEmail}/>
-        <Button>Add a Player</Button>
+        {/* <input className='teamSubmit' placeholder="Player Name" value={name} onChange={handleName}/>
+        <input className='teamSubmit' placeholder="Email Address" value={email} onChange={handleEmail}/> */}
+        {/* <Button>Add a Player</Button> */}
       </form>
         {playerArr}
     </div>
   )
-
   }
 export default Players;

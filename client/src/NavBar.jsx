@@ -18,7 +18,7 @@ console.log(currentUser);
     <div className="navbar" style={{ padding: "20px"}}>
         {/* <span style={{color: "white", fontSize: "25px"}}>FLUF</span> */}
          {currentUser ? 
-            <span className="welcome">{currentUser.name}</span>
+            <span className="welcome">Welcome {currentUser.name}</span>
             : null}        
               {currentUser ? (
                 <>

@@ -84,7 +84,6 @@ function PlayerCards({player_name, player_email, player_id, teams, playersTeams,
                   :
                   null
                 }
-                {/* <Players/> */}
                 <Button className="button" onClick={handleDeleteClick}>Remove</Button>
             </div>
         {/* <button onClick={createTeam}>Create Team</button> */}

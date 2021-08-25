@@ -35,7 +35,7 @@ function Games({teams}) {
   }
   
   useEffect((e) => {
-      fetch('http://localhost:3000/games')    
+      fetch('http://localhost:3000/games')
       .then(resp => resp.json())
       .then(data => setGames(data))
     }, [])
@@ -45,12 +45,12 @@ function Games({teams}) {
     fetch(`http://localhost:3000/games/${id}`, {
       method: "DELETE",
     })
-  //   .then((res) => res.json())
-  //   .then(() => {
-  //     const updatedGames = games.filter((game) => {
-  //       return game.id !== (id)})
-  //     setGames(updatedGames)
-  //   })
+    .then(() => {
+      const updatedGames = games.filter((game) => {
+        return game.id !== id
+      })
+      setGames(updatedGames)
+    })
   }
 
   // useEffect((e) => {
