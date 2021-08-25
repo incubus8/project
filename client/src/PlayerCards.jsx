@@ -2,24 +2,28 @@ import {useState} from 'react'
 import {Button} from 'semantic-ui-react'
 
 
-function PlayerCards({player_name, player_email, player_id, teams, handleDelete, teamList, id}) {
+function PlayerCards({player_name, player_email, player_id, teams, playersTeams, handleDelete, id}) {
 
   const [rosters, setRosters] = useState([])
-  const [teamss, setTeamss] = useState([])
-  const [teamName, setTeamName] = useState("")
   const [toggle, setToggle] = useState(false)
+  const [teamId, setTeamId] = useState(null)
 
-  const teamArr = teams.map(team => {
+  const teamArr = playersTeams.map(team => {
       if (team.name === undefined) {
         return null
     } else {
         return <ul>{team.name}</ul>
     }
   })
-  const handleTeamName = (e) => setTeamss(e.target.value)
+
+  const teamList = teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)
 
   const handleDeleteClick = () => {
     handleDelete(player_id)
+  }
+
+  const handleSetTeamId = (e) => {
+    setTeamId(e.target.value)
   }
 
   // useEffect((e) => {
@@ -32,12 +36,12 @@ function PlayerCards({player_name, player_email, player_id, teams, handleDelete,
     e.preventDefault()
     console.log(e.target.value);
     let formData = {
-      team_id: teams,
+      team_id: teamId,
       player_id: player_id
     }
 
-    fetch(`http://localhost:3000/rosters/${id}`, {
-              method: 'PATCH',
+    fetch(`http://localhost:3000/rosters`, {
+              method: 'POST',
               headers: { 
                   'Content-Type': 'application/json',
                   },
@@ -66,11 +70,11 @@ function PlayerCards({player_name, player_email, player_id, teams, handleDelete,
                       {teamList}
                   </select>
               </form> */}
-              <select className="teamSubmit" value={teams.id} >
+              <select className="teamSubmit" onChange={handleSetTeamId} value={teamId} >
                     <option >Select Team</option>
                       {teamList}
                   </select>
-              <Button className="button">Add To Team</Button>
+              <Button className="button" onClick={handleSubmit}>Add To Team</Button>
                 <h4>{player_name}</h4>
                 <h4>{player_email}</h4>
 

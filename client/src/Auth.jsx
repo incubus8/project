@@ -43,7 +43,9 @@ function Auth({setCurrentUser}) {
     return (
         <>
            <Form onSubmit={handleSubmit}>
-                <h1>Sign Up</h1>
+                <h1>Welcome to FLUF</h1>
+                <h3>FLatiron Ultimate Frisbee</h3>
+                <h3>Sign Up Below</h3>
                 <Input
                         type="text"
                         placeholder="name"

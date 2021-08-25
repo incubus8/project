@@ -14,6 +14,20 @@ import './App.css';
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null)
+  const [teams, setTeams] = useState([])
+  const [games, setGames] = useState([])
+
+  useEffect((e) => {
+    fetch('http://localhost:3000/teams')    
+    .then(resp => resp.json())
+    .then(data => setTeams(data))
+  }, [])
+
+  useEffect((e) => {
+    fetch('http://localhost:3000/games')    
+    .then(resp => resp.json())
+    .then(data => setGames(data))
+  }, [])
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -27,6 +41,7 @@ function App() {
   }, [])
 
 
+
 console.log('user', currentUser);
   return (
     <div className="App">
@@ -34,10 +49,10 @@ console.log('user', currentUser);
       <Switch>
           {/* <Route exact path='/' render={() => <HomePage/>} /> */}
           <Route path='/signup' render={() => <Auth setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />      
-          <Route path='/teams' render={() => <Teams />} />      
-          <Route path='/players' render={() => <Players />} />      
-          <Route path='/games' render={() => <Games />} />      
-          <Route path='/' render={() => <Login setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />      
+          <Route path='/teams' render={() => <Teams teams={teams} setTeams={setTeams} />} />      
+          <Route path='/players' render={() => <Players teams={teams} setTeams={setTeams}/>} />      
+          <Route path='/games' render={() => <Games teams={teams}/>} />       
+          <Route path='/signin' render={() => <Login setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />      
       </Switch>
     </div>
   );

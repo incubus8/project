@@ -1,6 +1,7 @@
 import {useHistory} from 'react-router-dom'
 import React, {useState} from 'react'
 import {Input, Form} from './styled'
+import {NavLink} from 'react-router-dom'
 
 
 function Login({setCurrentUser}) {
@@ -56,6 +57,10 @@ function Login({setCurrentUser}) {
                 <h1>Welcome to FLUF</h1>
                 <h3>FLatiron Ultimate Frisbee</h3>
                 <h3>Please Sign In</h3>
+                
+                <NavLink className='links' to='/signup'>
+                      <a className="linkTags">Or Sign Up Here</a>                    
+                </NavLink>
                 <Input
                         type="text"
                         required
@@ -64,14 +69,14 @@ function Login({setCurrentUser}) {
                         name="name"
                         onChange={(e) => setName(e.target.value)}>
                 </Input>
-                <Input
+                {/* <Input
                         type="text"
                         required
                         placeholder="email"
                         value={email}
                         email="email"
                         onChange={(e) => setEmail(e.target.value)}>
-                </Input>
+                </Input> */}
                 <Input
                         type="password"
                         required

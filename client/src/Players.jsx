@@ -1,12 +1,15 @@
 import {useState, useEffect} from 'react'
 import PlayerCards from './PlayerCards'
+import './TeamCards.css'
+import {Button} from 'semantic-ui-react'
 
-function Players() {
+function Players({teams, setTeams}) {
 
   const [players, setPlayers] = useState([])
-  const [teams, setTeams] = useState([])
+  // const [teams, setTeams] = useState([])
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
+  const [search, setSearch] = useState("")
   const [password, setPassword] = useState("")
   const [teamName, setTeamName] = useState("")
 
@@ -14,9 +17,10 @@ function Players() {
   const handleName = (e) => setName(e.target.value)
   const handleEmail = (e) => setEmail(e.target.value)
   const handlePassword = (e) => setPassword(e.target.value)
+  const handleSearch = (e) => setSearch(e.target.value)
 
 
-  const teamList = teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)
+  // const teamList = teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)
 
 
   useEffect((e) => {
@@ -31,22 +35,22 @@ function Players() {
       })
     }
 
-    useEffect((e) => {
-      fetch('http://localhost:3000/teams')    
-      .then(resp => resp.json())
-      .then(data => setTeams(data))
-    }, [])
+    // useEffect((e) => {
+    //   fetch('http://localhost:3000/teams')    
+    //   .then(resp => resp.json())
+    //   .then(data => setTeams(data))
+    // }, [])
 
     function handleSubmit(e) {
       e.preventDefault()
       let formData = {
         name,
         email,
-        password,
       }
 
+      // NOTE: MOVED TO APP
       const addPlayer = (newPlayer) => {
-        let playerArray = [...players, newPlayer]
+        let playerArray = [newPlayer, ...players]
         setTeams(playerArray)
       }
 
@@ -62,25 +66,32 @@ function Players() {
      }
 
 
-  const playerArr = players.map((player) => {
+    const filterPlayers = players.filter(player => {
+      return (player.name.toLowerCase().includes(search.toLowerCase()))
+    })
+
+
+  const playerArr = filterPlayers.map((player) => {
     return <PlayerCards
     key={player.id}
     player_name={player.name}
     player_email={player.email}
     player_id={player.id}
-    teams={player.teams}
-    teamList={teamList}
+    playersTeams={player.teams}
+    teams={teams}
+    // teamList={teamList}
     handleDelete={handleDelete}
     />
-})
+  })
 
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <button>Add a Player</button>
-        <input placeholder="Player Name" value={name} onChange={handleName}/>
-        <input placeholder="Email Address" value={email} onChange={handleEmail}/>
+        <input className="teamSubmit" id="search" onChange={handleSearch} type="text" placeholder="Search Players"></input>
+        <input className='teamSubmit' placeholder="Player Name" value={name} onChange={handleName}/>
+        <input className='teamSubmit' placeholder="Email Address" value={email} onChange={handleEmail}/>
+        <Button>Add a Player</Button>
       </form>
         {playerArr}
     </div>

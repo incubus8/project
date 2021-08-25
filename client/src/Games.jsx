@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import GameCards from './GameCards'
 import {Button} from 'semantic-ui-react'
 
-function Games() {
+function Games({teams}) {
 
   const [games, setGames] = useState([])
   const [home, setHome] = useState("")
@@ -11,13 +11,14 @@ function Games() {
   const [awayScore, setAwayScore] = useState("")
   const [date, setDate] = useState("")
   const [result, setResult] = useState("")
-  const [teams, setTeams] = useState([])
+  // const [teams, setTeams] = useState([])
 
   const teamList = teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)
   const scores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
   const scoresList = scores.map(score => <option key={score.id} value={score.id}>{score}</option>)
-  const results = ["home wins", "away wins"]
-  const resultsList = results.map(result => <option key={result.id} value={result.id}>{result}</option>)
+  const winnerList = teams.map(team => <option key={team.id} value={team.name}>{team.name}</option>)
+  // const winnerList = [{home}, {away}]
+  // const resultsList = results.map(result => <option key={result.id} value={result.id}>{result}</option>)
   
   const handleHome = (e) => setHome(e.target.value)
   const handleAway = (e) => setAway(e.target.value)
@@ -25,6 +26,13 @@ function Games() {
   const handleAwayScore = (e) => setAwayScore(e.target.value)
   const handleDate = (e) => setDate(e.target.value)
   const handleResult = (e) => setResult(e.target.value)
+
+  const pickWinner = () => {
+    if (homeScore > awayScore) {
+      return home.name 
+    }
+    return away.name
+  }
   
   useEffect((e) => {
       fetch('http://localhost:3000/games')    
@@ -32,7 +40,7 @@ function Games() {
       .then(data => setGames(data))
     }, [])
 
-
+    
   const handleDelete = (id) => {
     fetch(`http://localhost:3000/games/${id}`, {
       method: "DELETE",
@@ -45,11 +53,11 @@ function Games() {
   //   })
   }
 
-  useEffect((e) => {
-    fetch('http://localhost:3000/teams')    
-    .then(resp => resp.json())
-    .then(data => setTeams(data))
-  }, [])
+  // useEffect((e) => {
+  //   fetch('http://localhost:3000/teams')    
+  //   .then(resp => resp.json())
+  //   .then(data => setTeams(data))
+  // }, [])
 
     function handleSubmit(e) {
     e.preventDefault()
@@ -73,10 +81,8 @@ function Games() {
         .then(gameData => addGame(gameData))
      }
 
-    //  console.log("home", games.home.name);
-
      const addGame = (newGame) => {
-      let gameArray = [...games, newGame]
+      let gameArray = [newGame, ...games]
       setGames(gameArray)
     }
 
@@ -109,7 +115,7 @@ function Games() {
           </select>
           <select className='teamSubmit' value={result} onChange={handleResult}>
             <option>Winner</option>
-              {resultsList}
+              {winnerList}
           </select>
         <input className='teamSubmit' type="date" value={date} onChange={handleDate}/>
         <Button className="button">Add a Game</Button>

@@ -24,7 +24,7 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
+  height: 50vh;
 `;
 
 export const Input = styled.input`

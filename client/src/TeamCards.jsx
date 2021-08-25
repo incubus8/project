@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './TeamCards.css'
 import TeamRoster from './TeamRoster'
+import {Button} from 'semantic-ui-react'
 
 function TeamCards({name, image, id}) {
 
@@ -45,7 +46,7 @@ function TeamCards({name, image, id}) {
             <img src={image} alt="oops"/>
             <div class='team-card-body'>
                 <h4>{name}</h4>
-                <button onClick={handleClick} className="team-button">Roster</button>
+                <Button onClick={handleClick} className="team-button">Roster</Button>
                 
                 {toggle ? (
                     <TeamRoster lineUp={lineUp}/>                

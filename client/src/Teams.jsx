@@ -1,21 +1,22 @@
 import {useEffect, useState} from 'react'
 import TeamCards from './TeamCards'
 import {Button} from 'semantic-ui-react'
+import './TeamCards.css'
 
-function Teams() {
+function Teams({teams, setTeams}) {
 
-  const [teams, setTeams] = useState([])
+  // const [teams, setTeams] = useState([])
   const [name, setName] = useState("")
   const [image, setImage] = useState("")
 
   const handleName = (e) => setName(e.target.value)
   const handleImage = (e) => setImage(e.target.value)
 
-  useEffect((e) => {
-    fetch('http://localhost:3000/teams')    
-    .then(resp => resp.json())
-    .then(data => setTeams(data))
-  }, [])
+  // useEffect((e) => {
+  //   fetch('http://localhost:3000/teams')    
+  //   .then(resp => resp.json())
+  //   .then(data => setTeams(data))
+  // }, [])
 
   function handleSubmit(e) {
     e.preventDefault()
