@@ -7,6 +7,7 @@ function GameCards({home_id, away_id, date, result, home_score, away_score, id, 
   //     method: "DELETE",
   //   })
   // }
+
   const homeName = home.name
   const awayName = away.name
   
@@ -23,7 +24,7 @@ function GameCards({home_id, away_id, date, result, home_score, away_score, id, 
                   <br/>
                 vs {awayName}</h3>
                 <h5>Score: {home_score} - {away_score}</h5>
-                <h5>{winner} wins!</h5>
+                <h5>{result} wins!</h5>
                 <h5>{date}</h5>
                 <button onClick={handleDeleteClick}>Remove</button>
             </div>

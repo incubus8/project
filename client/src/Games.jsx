@@ -90,6 +90,8 @@ function Games({teams}) {
     return <GameCards
     key={game.id}
     {...game}
+    home={game.home}
+    away={game.away}
     handleDelete={handleDelete}
     />
 })
