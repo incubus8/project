@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import {Button} from 'semantic-ui-react'
+import './TeamCards.css'
 
 
 function PlayerCards({player_name, player_email, player_id, teams, playersTeams, handleDelete, id}) {
@@ -7,6 +8,7 @@ function PlayerCards({player_name, player_email, player_id, teams, playersTeams,
   const [rosters, setRosters] = useState([])
   const [toggle, setToggle] = useState(false)
   const [teamId, setTeamId] = useState(null)
+  const [toggleOptions, setToggleOptions] = useState(false)
 
   const teamArr = playersTeams.map(team => {
       if (team.name === undefined) {
@@ -60,31 +62,34 @@ function PlayerCards({player_name, player_email, player_id, teams, playersTeams,
       setToggle(!toggle)
     }
 
+    const handleToggleOptions = () => {
+      setToggleOptions(!toggleOptions)
+    }
+
   return (
     <div className="player-card">
             <div class='player-card-body'>
-              {/* <form onSubmit={handleSubmit}>
-                <button>Add To Team</button>
-                  <select value={teams} onChange={handleTeamName}>
-                    <option>Select Team</option>
-                      {teamList}
-                  </select>
-              </form> */}
+                <br></br>
+                <br></br>
+                {/* <Button compact className="button" onClick={handleToggleOptions} className="teams-button">Options</Button> */}
+                
+                <h3>{player_name}</h3>
+                <h3>{player_email}</h3>
+
               <select className="teamSubmit" onChange={handleSetTeamId} value={teamId} >
                     <option >Select Team</option>
                       {teamList}
                   </select>
-              <Button className="button" onClick={handleSubmit}>Add To Team</Button>
-                <h4>{player_name}</h4>
-                <h4>{player_email}</h4>
+                  {/* <br></br> */}
+              <Button compact className="button" onClick={handleSubmit}>Add To Team</Button>
 
-                <Button className="button" onClick={handleToggle} className="teams-button">Show Teams</Button>
+                <Button compact className="button" onClick={handleToggle} className="teams-button">Show Teams</Button>
                 { toggle ? 
-                  <h5>{teamArr}</h5>
+                  <h5 className="teams">{teamArr}</h5>
                   :
                   null
                 }
-                <Button className="button" onClick={handleDeleteClick}>Remove</Button>
+                <Button compact className="button" onClick={handleDeleteClick}>Remove</Button>
             </div>
         {/* <button onClick={createTeam}>Create Team</button> */}
     </div>

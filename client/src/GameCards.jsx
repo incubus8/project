@@ -1,4 +1,6 @@
 import React from 'react'
+import {Button} from 'semantic-ui-react'
+import './TeamCards.css'
 
 function GameCards({home_id, away_id, date, result, home_score, away_score, id, handleDelete, home, away}) {
 
@@ -26,7 +28,7 @@ function GameCards({home_id, away_id, date, result, home_score, away_score, id, 
                 <h5>Score: {home_score} - {away_score}</h5>
                 <h5>{result} wins!</h5>
                 <h5>{date}</h5>
-                <button onClick={handleDeleteClick}>Remove</button>
+                <Button compact className="removeButton" onClick={handleDeleteClick}>Remove</Button>
             </div>
     </div>
   )

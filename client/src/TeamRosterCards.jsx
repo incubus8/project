@@ -9,7 +9,9 @@ function TeamRosterCards(props) {
 
   return (
         <div className="roster-lineup">
-                <ul>{name}</ul>
+                <ul>
+                  <li>{name}</li>
+                </ul>
         </div>
   )
 
