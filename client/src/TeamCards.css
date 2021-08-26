@@ -66,24 +66,22 @@
     padding-top: 20px;
     overflow-y: scroll;
     overflow-y: auto;
-    /* background-color: #8bc0d43a; */
-    /* background: radial-gradient(#ffffff, #3a569c); */
     background-image: url("./Images/Frisbee.jpeg");
     background-size: 295px 295px;
     
 }
 
 .submitGame {
-    box-shadow: 3px 1px 1px 1px #00000034;
     border-radius: 25px;
     height: 50px;
-    padding: 7px;
+    /* padding: 7px; */
 }
 
 .teamSubmit {
     height: 30px;
     width: 120px;
-    background-color: black;
+    border: solid 1px;
+    border-radius: 8px;
 }
 
 .dateSubmit {

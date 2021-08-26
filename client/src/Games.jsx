@@ -97,22 +97,22 @@ function Games({teams}) {
 })
 
   return (
-    <div>
+    <div className="gameDiv">
       <form className="submitGame" onSubmit={handleSubmit}>
           <select className='teamSubmit' value={home} onChange={handleHome}>
-            <option>Select Team</option>
+            <option>Home Team</option>
               {teamList}
           </select>
           <select className='teamSubmit' value={away} onChange={handleAway}>
-            <option>Select Team</option>
+            <option>Away Team</option>
               {teamList}
           </select>
           <select className='teamSubmit' value={homeScore} onChange={handleHomeScore}>
-            <option>Select Home Score</option>
+            <option>Home Score</option>
               {scoresList}
           </select>
           <select className='teamSubmit' value={awayScore} onChange={handleAwayScore}>
-            <option>Select Away Score</option>
+            <option>Away Score</option>
               {scoresList}
           </select>
           <select className='teamSubmit' value={result} onChange={handleResult}>
@@ -120,7 +120,7 @@ function Games({teams}) {
               {winnerList}
           </select>
         <input className='dateSubmit' type="date" value={date} onChange={handleDate}/>
-        <Button color="black" className="button">Add a Game</Button>
+        <Button compact color="black" className="button">Add a Game</Button>
       </form>
       {gameArr}
     </div>

@@ -86,7 +86,7 @@ function Players({teams, setTeams}) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="submitPlayer" onSubmit={handleSubmit}>
         <input className="teamSubmit" id="search" onChange={handleSearch} type="text" placeholder="Search Players"></input>
         {/* <input className='teamSubmit' placeholder="Player Name" value={name} onChange={handleName}/>
         <input className='teamSubmit' placeholder="Email Address" value={email} onChange={handleEmail}/> */}

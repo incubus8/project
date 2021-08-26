@@ -9,7 +9,7 @@ function PlayerCards({player_name, player_email, player_id, teams, playersTeams,
   const [rosters, setRosters] = useState([])
   const [toggle, setToggle] = useState(false)
   const [teamId, setTeamId] = useState(null)
-  const [toggleOptions, setToggleOptions] = useState(false)
+  const [toggleOptions, setToggleOptions] = useState(true)
 
   const teamArr = playersTeams.map(team => {
       if (team.name === undefined) {
@@ -72,26 +72,24 @@ function PlayerCards({player_name, player_email, player_id, teams, playersTeams,
             <div class='player-card-body'>
                 <br></br>
                 <br></br>
-                {/* <Button compact className="button" onClick={handleToggleOptions} className="teams-button">Options</Button> */}
-                
                 <h3>{player_name}</h3>
                 <h3>{player_email}</h3>
 
+                {/* <Button compact color="black" className="button" onClick={handleToggleOptions} className="teams-button">Options</Button> */}
               <select className="teamSubmit" onChange={handleSetTeamId} value={teamId} >
                     <option>Select Team</option>
                       {teamList}
                   </select>
-                  {/* <br></br> */}
               <Button compact color="black" id="btn" className="button" onClick={handleSubmit}>Add To Team</Button>
 
                 <Button compact color="black" className="button" onClick={handleToggle} className="teams-button">Show Teams</Button>
-                { toggle ? 
+                { toggle ? (
                   <h5 className="teams">{teamArr}</h5>
-                  :
-                  null
+                 ) : (
+                  null)
                 }
                 <Button compact color="black" className="button" onClick={handleDeleteClick}>Remove</Button>
-            </div>
+                </div>
         {/* <button onClick={createTeam}>Create Team</button> */}
     </div>
   )

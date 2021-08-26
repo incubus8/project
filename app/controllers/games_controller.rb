@@ -14,6 +14,16 @@ class GamesController < ApplicationController
         end
     end
 
+    def update
+        game = Game.find_by(params[:id])
+        game.update(game_params)
+        if game
+            render json: game
+        else
+            render json: {error: "Unable to Update"}, status: :unprocessable_entity
+        end
+    end
+
     def show
         games = Game.find_by(id: params[:id])
         if games
@@ -41,6 +51,10 @@ class GamesController < ApplicationController
 
     def game_params
         params.require(:game).permit(:home_id, :away_id, :home_score, :away_score, :result, :date)
+    end
+
+    def game_update
+        params.permit(:home_id, :away_id, :home_score, :away_score, :result, :date)
     end
 
 end
