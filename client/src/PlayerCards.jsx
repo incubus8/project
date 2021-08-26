@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import {Button} from 'semantic-ui-react'
+import Frisbee from './Images/Frisbee.jpeg'
 import './TeamCards.css'
 
 
@@ -77,19 +78,19 @@ function PlayerCards({player_name, player_email, player_id, teams, playersTeams,
                 <h3>{player_email}</h3>
 
               <select className="teamSubmit" onChange={handleSetTeamId} value={teamId} >
-                    <option >Select Team</option>
+                    <option>Select Team</option>
                       {teamList}
                   </select>
                   {/* <br></br> */}
-              <Button compact className="button" onClick={handleSubmit}>Add To Team</Button>
+              <Button compact color="black" id="btn" className="button" onClick={handleSubmit}>Add To Team</Button>
 
-                <Button compact className="button" onClick={handleToggle} className="teams-button">Show Teams</Button>
+                <Button compact color="black" className="button" onClick={handleToggle} className="teams-button">Show Teams</Button>
                 { toggle ? 
                   <h5 className="teams">{teamArr}</h5>
                   :
                   null
                 }
-                <Button compact className="button" onClick={handleDeleteClick}>Remove</Button>
+                <Button compact color="black" className="button" onClick={handleDeleteClick}>Remove</Button>
             </div>
         {/* <button onClick={createTeam}>Create Team</button> */}
     </div>

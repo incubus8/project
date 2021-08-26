@@ -119,8 +119,8 @@ function Games({teams}) {
             <option>Winner</option>
               {winnerList}
           </select>
-        <input className='teamSubmit' type="date" value={date} onChange={handleDate}/>
-        <Button className="button">Add a Game</Button>
+        <input className='dateSubmit' type="date" value={date} onChange={handleDate}/>
+        <Button color="black" className="button">Add a Game</Button>
       </form>
       {gameArr}
     </div>

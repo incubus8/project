@@ -46,7 +46,7 @@ function TeamCards({name, image, id}) {
             <img src={image} alt="oops"/>
             <div class='team-card-body'>
                 <h4>{name}</h4>
-                <Button onClick={handleClick} className="team-button">Roster</Button>
+                <Button color="black" onClick={handleClick} className="team-button">Roster</Button>
                 
                 {toggle ? (
                     <TeamRoster lineUp={lineUp}/>                

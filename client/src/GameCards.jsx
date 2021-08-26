@@ -28,7 +28,7 @@ function GameCards({home_id, away_id, date, result, home_score, away_score, id, 
                 <h5>Score: {home_score} - {away_score}</h5>
                 <h5>{result} wins!</h5>
                 <h5>{date}</h5>
-                <Button compact className="removeButton" onClick={handleDeleteClick}>Remove</Button>
+                <Button compact color="black" className="removeButton" onClick={handleDeleteClick}>Remove</Button>
             </div>
     </div>
   )

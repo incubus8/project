@@ -55,7 +55,7 @@ function Teams({teams, setTeams}) {
       <form onSubmit={handleSubmit}>
         <input className='teamSubmit' placeholder="Team Name" value={name} onChange={handleName}/>
         <input className='teamSubmit' placeholder="Image URL" value={image} onChange={handleImage}/>
-        <Button className="button">Add a Team</Button>
+        <Button color="black" className="button">Add a Team</Button>
       </form>
       {teamArr}
     </div>
